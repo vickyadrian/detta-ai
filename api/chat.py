@@ -12,7 +12,7 @@ def handler(request):
 
     try:
         body = request.json
-        message = body.get("message", "")
+        message = body.get("message", "").strip()
     except Exception:
         return {
             "statusCode": 400,
@@ -24,7 +24,7 @@ def handler(request):
         return {
             "statusCode": 400,
             "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"error": "Message required"})
+            "body": json.dumps({"error": "Message is required"})
         }
 
     api_key = os.environ.get("BYTEZ_API_KEY")
