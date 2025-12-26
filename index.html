@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Nexus | Minimalist AI Tool</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Nexus</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
+  <div class="background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
 
-    <main class="container">
-        <header class="hero">
-            <h1>AI <span class="accent">Nexus</span></h1>
-            <p>Simple. Powerful. Intelligent. Experience the next generation of AI interaction.</p>
-        </header>
+  <main class="container">
+    <header class="hero">
+      <h1>AI <span class="accent">Nexus</span></h1>
+      <p>Minimalist AI tool powered by GPT-4o.</p>
+    </header>
 
-        <section class="ai-tool">
-            <div class="glass-card">
-                <div class="input-group">
-                    <textarea id="userInput" placeholder="Ask me anything..." rows="4"></textarea>
-                    <button id="submitBtn">
-                        <span>Generate Response</span>
-                        <div class="loader" id="loader"></div>
-                    </button>
-                </div>
-            </div>
+    <section class="ai-tool">
+      <div class="glass-card">
+        <div class="input-group">
+          <textarea
+            id="userInput"
+            placeholder="Ask me anything..."
+            rows="4"
+          ></textarea>
 
-            <div id="responseContainer" class="response-container hidden">
-                <div class="glass-card response-card">
-                    <h3>Response</h3>
-                    <div id="aiResponse" class="markdown-content"></div>
-                </div>
-            </div>
-        </section>
+          <button id="submitBtn">
+            <span>Generate Response</span>
+            <div class="loader" id="loader"></div>
+          </button>
+        </div>
+      </div>
 
-        <footer class="minimal-footer">
-            <p>&copy; 2025 AI Nexus. Built for developers.</p>
-        </footer>
-    </main>
+      <div id="responseContainer" class="response-container hidden">
+        <div class="glass-card response-card">
+          <h3>Response</h3>
+          <div id="aiResponse" class="markdown-content"></div>
+        </div>
+      </div>
+    </section>
 
-    <script src="main.js"></script>
+    <footer class="minimal-footer">
+      <p>&copy; 2025 AI Nexus</p>
+    </footer>
+  </main>
+
+  <script src="main.js"></script>
 </body>
 </html>
