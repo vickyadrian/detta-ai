@@ -4,36 +4,36 @@ import urllib.request
 
 def handler(request):
     if request.method != "POST":
-        return {
-            "statusCode": 405,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"error": "Method not allowed"})
-        }
+        return (
+            json.dumps({"error": "Method not allowed"}),
+            405,
+            {"Content-Type": "application/json"}
+        )
 
     try:
-        body = request.json
+        body = json.loads(request.body)
         message = body.get("message", "").strip()
     except Exception:
-        return {
-            "statusCode": 400,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"error": "Invalid JSON"})
-        }
+        return (
+            json.dumps({"error": "Invalid JSON"}),
+            400,
+            {"Content-Type": "application/json"}
+        )
 
     if not message:
-        return {
-            "statusCode": 400,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"error": "Message is required"})
-        }
+        return (
+            json.dumps({"error": "Message is required"}),
+            400,
+            {"Content-Type": "application/json"}
+        )
 
     api_key = os.environ.get("BYTEZ_API_KEY")
     if not api_key:
-        return {
-            "statusCode": 500,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"error": "API key not set"})
-        }
+        return (
+            json.dumps({"error": "API key not set"}),
+            500,
+            {"Content-Type": "application/json"}
+        )
 
     payload = json.dumps({
         "model": "openai/gpt-4o",
@@ -51,19 +51,19 @@ def handler(request):
     )
 
     try:
-        with urllib.request.urlopen(req, timeout=8) as res:
+        with urllib.request.urlopen(req, timeout=10) as res:
             data = json.loads(res.read().decode())
             reply = data["choices"][0]["message"]["content"]
 
-        return {
-            "statusCode": 200,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"reply": reply})
-        }
+        return (
+            json.dumps({"reply": reply}),
+            200,
+            {"Content-Type": "application/json"}
+        )
 
     except Exception as e:
-        return {
-            "statusCode": 500,
-            "headers": {"Content-Type": "application/json"},
-            "body": json.dumps({"error": str(e)})
-        }
+        return (
+            json.dumps({"error": str(e)}),
+            500,
+            {"Content-Type": "application/json"}
+        )
