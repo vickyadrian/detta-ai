@@ -20,19 +20,36 @@ export default async function handler(req, res) {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${apiKey}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           model: "openai/gpt-4o",
           messages: [{ role: "user", content: message }],
-          max_tokens: 400
-        })
+          max_tokens: 400,
+        }),
       }
     );
 
     const data = await r.json();
-    res.status(200).json({ reply: data.choices[0].message.content });
+
+    // 🔒 DEFENSIVE CHECK (INI KUNCI)
+    if (!data.choices || !data.choices[0]) {
+      console.error("Unexpected Bytez response:", data);
+      return res.status(502).json({
+        error: "Invalid response from AI provider",
+      });
+    }
+
+    const reply = data.choices[0].message?.content;
+    if (!reply) {
+      return res.status(502).json({
+        error: "Empty AI response",
+      });
+    }
+
+    return res.status(200).json({ reply });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("API error:", err);
+    return res.status(500).json({ error: "Internal server error" });
   }
 }
