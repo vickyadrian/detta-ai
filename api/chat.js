@@ -23,7 +23,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "openai/gpt-oss-120b",
+          model: "openai/gpt-4o-mini",
           messages: [{ role: "user", content: message }],
           max_tokens: 200,
         }),
