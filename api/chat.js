@@ -23,9 +23,9 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "openai/gpt-4o",
+          model: "openai/gpt-oss-120b",
           messages: [{ role: "user", content: message }],
-          max_tokens: 400,
+          max_tokens: 200,
         }),
       }
     );
@@ -33,6 +33,13 @@ export default async function handler(req, res) {
     const data = await r.json();
 
     // 🔒 DEFENSIVE CHECK (INI KUNCI)
+    if (data.error) {
+  console.error("AI provider error:", data.error);
+  return res.status(402).json({
+    error: data.error,
+  });
+  }
+    
     if (!data.choices || !data.choices[0]) {
       console.error("Unexpected Bytez response:", data);
       return res.status(502).json({
