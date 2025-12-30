@@ -25,7 +25,6 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           model: "openai/gpt-4o-mini",
           messages: [{ role: "user", content: message }],
-          max_tokens: 200,
         }),
       }
     );
