@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Message is required" });
   }
 
-  const apiKey = process.env.BYTEZ_API_KEY;
+  const apiKey = "3392d539aae37d7d8a782957cc68c5a7";
   if (!apiKey) {
     return res.status(500).json({ error: "API key not set" });
   }
