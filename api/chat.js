@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Message is required" });
   }
 
-  const apiKey = "3392d539aae37d7d8a782957cc68c5a7";
+  const apiKey = "52a18fb21b4176f38505e9f96dddf0e2";
   if (!apiKey) {
     return res.status(500).json({ error: "API key not set" });
   }
