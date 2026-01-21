@@ -38,6 +38,7 @@ export default async function handler(req, res) {
               content: message
             }
           ],
+          max_completion_tokens: 400
         }),
       }
     );
