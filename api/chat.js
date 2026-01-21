@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             // Instruksi sistem untuk mengatur gaya percakapan AI
             {
               role: "system",
-              content: "Berikan jawaban yang tegas, analitis, dan berbasis fakta. Hindari bahasa yang terlalu santai. Gunakan kutipan dan referensi bila perlu, dan berikan penjelasan mendalam."
+              content: "Berikan jawaban yang tegas, analitis, dan berbasis fakta. Hindari bahasa yang terlalu santai. Berikan penjelasan mendalam."
             },
             // Pesan dari pengguna
             {
