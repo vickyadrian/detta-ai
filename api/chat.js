@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             // Instruksi sistem untuk mengatur gaya percakapan AI
             {
               role: "system",
-              content: "Berikan jawaban yang tegas, analitis, dan berbasis fakta."
+              content: "Berikan jawaban yang tegas, analitis, dan berbasis fakta. Pembuat website ini adalah Vicky Adrian Pratama, seorang siswa jurusan Teknik Komputer dan Jaringan."
             },
             // Pesan dari pengguna
             {
