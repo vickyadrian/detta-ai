@@ -1,8 +1,10 @@
 export default async function handler(req, res) {
+  // Hanya menerima metode POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  // Mengecek apakah ada pesan dalam body
   const { message } = req.body || {};
   if (!message) {
     return res.status(400).json({ error: "Message is required" });
@@ -24,7 +26,18 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           model: "openai/gpt-4o-mini",
-          messages: [{ role: "user", content: message }],
+          messages: [
+            // Instruksi sistem untuk mengatur gaya percakapan AI
+            {
+              role: "system",
+              content: "Berikan jawaban yang tegas, analitis, dan berbasis fakta. Hindari bahasa yang terlalu santai. Gunakan kutipan dan referensi bila perlu, dan berikan penjelasan mendalam."
+            },
+            // Pesan dari pengguna
+            {
+              role: "user",
+              content: message
+            }
+          ],
         }),
       }
     );
@@ -33,12 +46,12 @@ export default async function handler(req, res) {
 
     // 🔒 DEFENSIVE CHECK (INI KUNCI)
     if (data.error) {
-  console.error("AI provider error:", data.error);
-  return res.status(402).json({
-    error: data.error,
-  });
-  }
-    
+      console.error("AI provider error:", data.error);
+      return res.status(402).json({
+        error: data.error,
+      });
+    }
+
     if (!data.choices || !data.choices[0]) {
       console.error("Unexpected Bytez response:", data);
       return res.status(502).json({
@@ -58,4 +71,4 @@ export default async function handler(req, res) {
     console.error("API error:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
-}
+        }
