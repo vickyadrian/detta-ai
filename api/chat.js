@@ -40,7 +40,7 @@ Sebagai seorang yang juga menggemari dunia freelance, bug hunting, dan web devel
               content: message
             }
           ],
-          max_completion_tokens: 1000
+          max_completion_tokens: 400
         }),
       }
     );
