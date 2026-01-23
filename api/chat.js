@@ -1,9 +1,8 @@
-async function handler(req, res) {
+export default async function handler(req, res) {
   // Hanya menerima metode POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
-  module.exports = handler;
 
   // Mengecek apakah ada pesan dalam body
   const { message } = req.body || {};
