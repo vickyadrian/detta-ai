@@ -44,8 +44,19 @@ Sebagai seorang yang juga menggemari dunia freelance, bug hunting, dan web devel
         }),
       }
     );
+// Fallback: jika respons bukan JSON
+    const text = await r.text();
+let data;
 
-    const data = await r.json();
+try {
+  data = JSON.parse(text);
+} catch (e) {
+  console.error("Non-JSON response:", text);
+  return res.status(500).json({
+    error: "Non-JSON response from AI provider",
+    raw: text, // optional untuk debugging
+  });
+              }
 
     // 🔒 DEFENSIVE CHECK (INI KUNCI)
     if (data.error) {
